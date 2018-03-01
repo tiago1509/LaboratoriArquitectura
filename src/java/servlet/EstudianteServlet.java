@@ -7,9 +7,12 @@ package servlet;
 
 import LaborModel.Estudiante;
 import LaborModel.Materia;
+import LaborModel.Matricula;
 import daoLabora.EstudianteFacade;
 import daoLabora.EstudianteFacadeLocal;
+import daoLabora.MateriaFacade;
 import daoLabora.MateriaFacadeLocal;
+import daoLabora.MatriculaFacade;
 import daoLabora.MatriculaFacadeLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -74,21 +77,16 @@ public class EstudianteServlet extends HttpServlet {
             } else {
                 url = "login.jsp?error=1";
             }
-        } else if ("enrollment".equals(action)) {
-//                List<Estudiante> findAll = estudianteFacade.findAll();
-//                request.getSession().setAttribute("estudiantes", findAll);
-//                String nombre = (String) request.getSession().getAttribute("login.idE");
-                
+        } else if ("enrollment".equals(action)) {        
                 //Caputuramos id de la materia
                 String idM = request.getParameter("id");
                 //Pedimos a la sesión que nos retorne el id del usuario
                 String idE = (String) request.getSession().getAttribute("login");
                 
                 System.out.println(idE);
-                System.out.println(idM);
+                System.out.println(idM);               
                 
-                
-                matriculaFacade.matricula(5, 3);
+                matriculaFacade.matricula(Integer.valueOf(idM), Integer.valueOf(idE));
                 url = "EstudianteServlet?action=list";
             } else if ("logout".equals(action)){
             request.getSession().removeAttribute("login");

@@ -7,11 +7,13 @@ package daoLabora;
 
 
 import LaborModel.Estudiante;
+import LaborModel.Materia;
 import LaborModel.Matricula;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,24 +37,23 @@ public class MatriculaFacade extends AbstractFacade<Matricula> implements Matric
     @Override
      public void matricula(int codeMate, int id) {
         
-         //Persistencia mala. Error en el create.
-         
         Matricula matricula = new Matricula();
-        EstudianteFacade ef = new EstudianteFacade();
-        MateriaFacade mf = new MateriaFacade();
+        Estudiante ef = new Estudiante();
+        Materia mf = new Materia();
+        MatriculaFacade maf = new MatriculaFacade();
+
+        //Envio código de estudiante a un objeto del mismo tipo
+        ef.setId(id);
+          
+        //Envio código de materia a un objeto del mismo tipo
+        mf.setCode(codeMate);
+  
+        matricula.setId(2); //Hay que generar un id para la matricula(Random num)
         
-        matricula.setCodeSubject(mf.find(codeMate));
-        matricula.setIdStudent(ef.find(id));
-        
-        em.getTransaction().begin();
-        em.persist(matricula);
-        em.getTransaction().commit();
-        
-        //Retorna nullpointer exception
-//        Query q = em.createQuery("insert into Matricula (idEst,idMate) values (:codeMate,:id)  ");
-//        q.setParameter("id", id);
-//        q.setParameter("codeMate", codeMate);
-//        q.executeUpdate();
+        matricula.setCodeSubject(mf); //Introduzco en la matricula la info de la materia
+        matricula.setIdStudent(ef);  //Introduzco en la matricula la info del estudiante
+
+        em.persist(matricula); //Inserción en base de datos
        }
     
 }

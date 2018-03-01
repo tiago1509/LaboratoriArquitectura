@@ -137,5 +137,6 @@ public class Materia implements Serializable {
     public String toString() {
         return "LaborModel.Materia[ code=" + code + " ]";
     }
+
     
 }
