@@ -8,6 +8,6 @@
     </head>
     <body>
         <jsp:include page="menu.jsp"></jsp:include>
-        <h1>PAGINA PARA GESTIÓN DE PERSONAL</h1>
+        <h1><font face="arial,sans-serif">PAGINA PARA GESTIÓN DE PERSONAL</font></h1>
     </body>
 </html>

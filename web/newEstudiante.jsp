@@ -14,19 +14,19 @@
     </head>
     <body>
         <jsp:include page="menu.jsp"></jsp:include>
-        <h1>Hello World!</h1>
+        <h1><font face="arial,sans-serif">Hello World!</font></h1>
         <div class="container well">
             <div align="center">
             <form action="EstudianteServlet?action=insert" method="post">
                 <table>
                     <tr>
-                        <th><label><b>Username:</b></label></th>
+                        <th><label><b><font face="arial,sans-serif">Username:</font></b></label></th>
                         <th>
                             <input type="text" placeholder="Enter Username" class="form-control" name="name" required=""/>
                         </th>
                     </tr>
                     <tr>
-                        <th><label><b>Password:</b></label></th>
+                        <th><label><b><font face="arial,sans-serif">Password:</font></b></label></th>
                         <th>
                             <input type="password" placeholder="Enter Password" class="form-control" name="password" required=""/>
                         </th>
@@ -50,7 +50,7 @@
                     </tr>
                 </table>    
             </form>
-            <div/>
+                </div>
             <br>
         </div>
     </body>

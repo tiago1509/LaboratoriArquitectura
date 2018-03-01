@@ -8,7 +8,9 @@
     </head>
     <body>
       <jsp:include page="menu.jsp"></jsp:include>
-        <h1>BIENVENIDO A LA PAGINA</h1>
+      
+      <h1><font face="arial,sans-serif"><center>BIENVENIDO A LA PAGINA</center></font></h1>
+      
     </body>
 </html>
 

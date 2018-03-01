@@ -16,25 +16,25 @@
     </head>
     <body>
         <jsp:include page="menu.jsp"></jsp:include>
-            <h1>Hello World!</h1>
+        
         <c:if test="${param.error==1}">
-            <font color="red">Usuario Invalido. Intentelo de nuevo</font>
+        <font color="red"><font face="arial,sans-serif">Usuario Invalido. Intentelo de nuevo</font></font>
         </c:if>     
         <div class="container well">
             
             <div align="center">
-                <h1> Contact Information</h1>
+                <h1><font face="arial,sans-serif"> Contact Information</font></h1>
                 <img src="avatar2.png" alt="Avatar" class="avatar">
                 <form action="EstudianteServlet?action=login" method="post">
                 <table>
                     <tr>
-                        <th><label><b>UserID:</b></label></th>
+                        <th><label><b><font face="arial,sans-serif">UserID:</font></b></label></th>
                         <th>
                         <input type="text" placeholder="Enter Id" class="form-control" name="idE" required=""/> 
                         </th>
                     </tr>
                     <tr>
-                        <th><label><b>Password:</b></label></th>
+                        <th><label><b><font face="arial,sans-serif">Password:</font></b></label></th>
                         <th>
                         <input type="password" placeholder="Enter Password" class="form-control" name="password" required=""/> 
                         </th>
