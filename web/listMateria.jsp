@@ -10,10 +10,12 @@
     </head>
     <body>
         <jsp:include page="menu.jsp"></jsp:include>
-        <h1>Hello World!</h1>
-        <c:forEach var="a" items="${accounts}">
-           |${a.id}| |${a.username}| |${a.email}| 
-           <a onclick="return confirm('Esta seguro?')" href="EstudianteServlet?action=delete&id=${a.id}">Delete</a>        
+        <h1>Lista de Materias</h1>
+        
+        <c:forEach var="a" items="${materias}">
+            
+           |${a.code}| |${a.name}| |${a.credits}| |${a.horary}| |${a.capacity}|
+           <a onclick="return confirm('Esta seguro?')" href="EstudianteServlet?action=enrollment&id=${a.code}">Aceptar</a>
            <hr/>
         </c:forEach>        
         

@@ -6,6 +6,7 @@
 package daoLabora;
 
 import LaborModel.Estudiante;
+//import java.awt.TexturePaintContext;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -31,13 +32,18 @@ public class EstudianteFacade extends AbstractFacade<Estudiante> implements Estu
     }
 
     @Override
-    public boolean checkLogin(String n, String p) {
-        Query q =em.createQuery("select a from Account a"
-            + "where a.name=:n and a.password=:p");
-        q.setParameter("n", n);
-        q.setParameter("p", p);
-        return q.getResultList().size()>0;
+    public boolean checkLogin(Integer i, String p) {       
+        Query q =em.createQuery("select a from Estudiante a"
+            + " where a.id=:i and a.password=:p");
+        q.setParameter("i", i);
+        q.setParameter("p", p);       
+       return q.getResultList().size()>0;
     }
     
 
+
+    
+
+    
+    
 }

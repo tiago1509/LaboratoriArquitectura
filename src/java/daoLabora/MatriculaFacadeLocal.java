@@ -29,5 +29,7 @@ public interface MatriculaFacadeLocal {
     List<Matricula> findRange(int[] range);
 
     int count();
+
+    void matricula(int codeName, int IdEst);
     
 }

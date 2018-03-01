@@ -6,6 +6,7 @@
 package daoLabora;
 
 import LaborModel.Estudiante;
+//import java.awt.TexturePaintContext;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -30,6 +31,10 @@ public interface EstudianteFacadeLocal {
 
     int count();
 
-    boolean checkLogin(String name, String password);
+    boolean checkLogin(Integer i, String p);
+
+
+
+
     
 }

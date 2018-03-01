@@ -6,15 +6,21 @@
 package servlet;
 
 import LaborModel.Estudiante;
+import LaborModel.Materia;
+import daoLabora.EstudianteFacade;
 import daoLabora.EstudianteFacadeLocal;
+import daoLabora.MateriaFacadeLocal;
+import daoLabora.MatriculaFacadeLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import static org.jboss.weld.servlet.SessionHolder.getSession;
 
 /**
  *
@@ -24,6 +30,10 @@ public class EstudianteServlet extends HttpServlet {
 
     @EJB
     private EstudianteFacadeLocal estudianteFacade;
+    @EJB
+    private MateriaFacadeLocal materiaFacade;
+    @EJB
+    private MatriculaFacadeLocal matriculaFacade;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,7 +44,7 @@ public class EstudianteServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest (HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
@@ -43,33 +53,44 @@ public class EstudianteServlet extends HttpServlet {
             String action = request.getParameter("action");
             String url = "index.jsp";
             if("list".equals(action)) {
-                List<Estudiante> findAll = estudianteFacade.findAll();
-                request.getSession().setAttribute("Estudiantes", findAll);
-                url = "listEstudiantes.jsp";
+                //findAll para buscar en materias
+                List<Materia> findAll = materiaFacade.findAll();
+                request.getSession().setAttribute("materias", findAll);
+                
+                //findAll2 para buscar en estudiantes
+                //No está en uso actualmente
+                List<Estudiante> findAll2 = estudianteFacade.findAll();
+                
+                request.getSession().setAttribute("estudiantes", findAll2);
+                url = "listMateria.jsp";
         } else if("login".equals(action)){
-            String n = request.getParameter("name");
+            String i = request.getParameter("idE");
             String p = request.getParameter("password");
-            boolean checkLogin = estudianteFacade.checkLogin(n, p);
+            
+            boolean checkLogin = estudianteFacade.checkLogin(Integer.valueOf(i), p);
             if(checkLogin) {
-                request.getSession().setAttribute("login", n);
+                request.getSession().setAttribute("login", i);
                 url = "manager.jsp";
             } else {
                 url = "login.jsp?error=1";
             }
-        } else if ("insert".equals(action)){
-            Estudiante a = new Estudiante();
-            
-            a.setName(request.getParameter("name"));
-            a.setPassword(request.getParameter("password"));
-            a.setPhoto(null); // Hay que agregar el metodo para insertar imagen
-            estudianteFacade.create(a);
-            url = "login.jsp";
-        } else if ("delete".equals(action)){
-            String id = request.getParameter("id");
-            Estudiante a = estudianteFacade.find(Integer.valueOf(id));
-            estudianteFacade.remove(a);
-            url = "EstudianteServlet?action=list";
-        } else if ("logout".equals(action)){
+        } else if ("enrollment".equals(action)) {
+//                List<Estudiante> findAll = estudianteFacade.findAll();
+//                request.getSession().setAttribute("estudiantes", findAll);
+//                String nombre = (String) request.getSession().getAttribute("login.idE");
+                
+                //Caputuramos id de la materia
+                String idM = request.getParameter("id");
+                //Pedimos a la sesión que nos retorne el id del usuario
+                String idE = (String) request.getSession().getAttribute("login");
+                
+                System.out.println(idE);
+                System.out.println(idM);
+                
+                
+                matriculaFacade.matricula(5, 3);
+                url = "EstudianteServlet?action=list";
+            } else if ("logout".equals(action)){
             request.getSession().removeAttribute("login");
             url = "login.jsp";
         }

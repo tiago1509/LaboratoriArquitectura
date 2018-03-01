@@ -28,9 +28,9 @@
                 <form action="EstudianteServlet?action=login" method="post">
                 <table>
                     <tr>
-                        <th><label><b>Username:</b></label></th>
+                        <th><label><b>UserID:</b></label></th>
                         <th>
-                        <input type="text" placeholder="Enter Username" class="form-control" name="username" required=""/> 
+                        <input type="text" placeholder="Enter Id" class="form-control" name="idE" required=""/> 
                         </th>
                     </tr>
                     <tr>
@@ -38,6 +38,7 @@
                         <th>
                         <input type="password" placeholder="Enter Password" class="form-control" name="password" required=""/> 
                         </th>
+                        <%! %>
                     </tr>
                     <div class="break"></div>
                     <tr>

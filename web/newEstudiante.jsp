@@ -1,9 +1,3 @@
-<%-- 
-    Document   : newAccount
-    Created on : 27/01/2017, 08:53:07 PM
-    Author     : brian
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,12 +17,12 @@
         <h1>Hello World!</h1>
         <div class="container well">
             <div align="center">
-            <form action="AccountServlet?action=insert" method="post">
+            <form action="EstudianteServlet?action=insert" method="post">
                 <table>
                     <tr>
                         <th><label><b>Username:</b></label></th>
                         <th>
-                            <input type="text" placeholder="Enter Username" class="form-control" name="username" required=""/>
+                            <input type="text" placeholder="Enter Username" class="form-control" name="name" required=""/>
                         </th>
                     </tr>
                     <tr>
@@ -38,10 +32,10 @@
                         </th>
                     </tr>
                     <tr>
-                        <th><label><b>Email:</b></label></th>
+                        <th><label><b>Photo:</b></label></th>
                         <th>
                             <!--Hay que agregar el ingreso de fotos-->
-                            <input type="txt" placeholder="Enter photo" class="form-control" name="photo" required=""/>
+                            <input type="txt" placeholder="Enter photo" class="form-control" name="photo"/>
                         </th>
                     </tr>
                     <div class="break"></div>
@@ -55,8 +49,8 @@
                         </td>
                     </tr>
                 </table>    
-        </form> 
-            </div>
+            </form>
+            <div/>
             <br>
         </div>
     </body>
