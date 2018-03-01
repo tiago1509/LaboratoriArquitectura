@@ -9,6 +9,7 @@ package daoLabora;
 import LaborModel.Estudiante;
 import LaborModel.Materia;
 import LaborModel.Matricula;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -40,7 +41,6 @@ public class MatriculaFacade extends AbstractFacade<Matricula> implements Matric
         Matricula matricula = new Matricula();
         Estudiante ef = new Estudiante();
         Materia mf = new Materia();
-        MatriculaFacade maf = new MatriculaFacade();
 
         //Envio código de estudiante a un objeto del mismo tipo
         ef.setId(id);
@@ -48,12 +48,19 @@ public class MatriculaFacade extends AbstractFacade<Matricula> implements Matric
         //Envio código de materia a un objeto del mismo tipo
         mf.setCode(codeMate);
   
-        matricula.setId(2); //Hay que generar un id para la matricula(Random num)
+        matricula.setId(0); //Hay que generar un id para la matricula(Random num)
         
         matricula.setCodeSubject(mf); //Introduzco en la matricula la info de la materia
         matricula.setIdStudent(ef);  //Introduzco en la matricula la info del estudiante
 
         em.persist(matricula); //Inserción en base de datos
        }
+
+    @Override
+    public List<Matricula> listEnrollment(int idStudent) {
+        Query q =em.createQuery("select a from Matricula a where a.id=:idStudent");
+        q.setParameter("idStudent", idStudent);      
+        return q.getResultList();
+    }
     
 }

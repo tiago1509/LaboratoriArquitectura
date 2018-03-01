@@ -62,9 +62,6 @@ public class EstudianteServlet extends HttpServlet {
                 
                 //findAll2 para buscar en estudiantes
                 //No está en uso actualmente
-                List<Estudiante> findAll2 = estudianteFacade.findAll();
-                
-                request.getSession().setAttribute("estudiantes", findAll2);
                 url = "listMateria.jsp";
         } else if("login".equals(action)){
             String i = request.getParameter("idE");
@@ -77,6 +74,11 @@ public class EstudianteServlet extends HttpServlet {
             } else {
                 url = "login.jsp?error=1";
             }
+        } else if ("listMatricula".equals(action)) {
+            String idE = (String) request.getSession().getAttribute("login");
+            List<Matricula> matricula = matriculaFacade.listEnrollment(Integer.valueOf(idE));
+            request.getSession().setAttribute("matriculas", matricula); //Iista de matriculas
+            url = "listMatricula.jsp";    
         } else if ("enrollment".equals(action)) {        
                 //Caputuramos id de la materia
                 String idM = request.getParameter("id");

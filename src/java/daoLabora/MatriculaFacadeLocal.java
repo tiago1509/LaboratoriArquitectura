@@ -31,5 +31,7 @@ public interface MatriculaFacadeLocal {
     int count();
 
     void matricula(int codeName, int IdEst);
+
+    List<Matricula> listEnrollment(int idStudent);
     
 }
